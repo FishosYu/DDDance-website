@@ -138,6 +138,46 @@
             padding: 1rem 0;
             margin-top: 3rem;
         }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .game-info {
+                padding: 2rem 1rem;
+            }
+            
+            .screenshots {
+                grid-template-columns: 1fr; /* 手机只显示一列 */
+                gap: 0.8rem;
+            }
+            
+            .screenshot {
+                height: 180px; /* 手机端高度稍小 */
+                max-width: 100%; /* 确保不超出屏幕 */
+            }
+            
+            .download-btn {
+                display: block; /* 按钮占满宽度 */
+                margin: 0.5rem 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1rem;
+            }
+            
+            .screenshot {
+                height: 150px; /* 更小屏幕高度更低 */
+            }
+        }
     </style>
 <base target="_blank">
 </head>
@@ -184,4 +224,5 @@
 </body>
 
 </html>
+
 
