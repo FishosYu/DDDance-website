@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>更多信息 - 三日舞会</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff5e9;
+            color: #333;
+        }
+        header {
+            background-color: #7f3516;
+            color: rgb(255, 244, 210);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(255,240,230,0.1);
+        }
+        header h1 { font-size: 2.2rem; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background-color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #7f3516;
+        }
+
+        .role-list li {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.6rem 1.3rem;
+            background-color: #ffce83;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover { background-color: #9a6421; }
+
+        footer {
+            background-color: #7f3516;
+            color: rgb(255,244,210);
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+
+    <base target="_self">
+</head>
+<body>
+    <header>
+        <h1>三日舞会 - DDDance</h1>
+        <p>更多信息</p>
+    </header>
+
+    <div class="container">
+
+        <!-- 规则信息 -->
+        <div class="section">
+            <h2>游戏规则</h2>
+            <p>（此处为示例内容，你可自行替换）</p>
+            <p>规则示例：玩家在舞会上通过三日内发生的事件判断其他角色的身份，最终决定舞池的命运……</p>
+        </div>
+
+        <!-- 身份介绍 -->
+        <div class="section">
+            <h2>身份介绍</h2>
+            <ul class="role-list">
+                <li>舞者：包括你在内的优秀舞者角色。</li>
+                <li>伶人：伪装成舞者潜伏在舞池中，试图用悲伤的歌谣染指欢宴。每晚可使一名舞者角色离开舞场。</li>
+                <li>面具伶人：特殊的伶人（属于伶人阵营）。若在最后一日的舞池开始前仍在舞场，则会为在场随机一位角色带上面具，使其在舞池中的身份发生倒转。</li>
+            </ul>
+        </div>
+
+        <!-- 演示视频 -->
+        <div class="section">
+            <h2>演示视频</h2>
+            <li>该视频使用windows版本进行演示。</li>
+            <video src="images/demo.mp4" controls></video>
+        </div>
+
+        <a href="index.html" class="back-link">返回首页</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 三日舞会. 保留所有权利.</p>
+    </footer>
+</body>
+</html>
