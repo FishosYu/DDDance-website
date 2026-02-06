@@ -6,13 +6,14 @@
     <title>更多信息 - 三日舞会</title>
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/fishosyu/DDDance-website@main/images/icon.png" type="image/png">
 
-
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Arial', sans-serif;
             background-color: #fff5e9;
             color: #333;
+            /* 平滑过渡所有文字变化 */
+            transition: all 0.3s ease;
         }
         header {
             background-color: #7f3516;
@@ -20,8 +21,28 @@
             padding: 2rem 0;
             text-align: center;
             box-shadow: 0 2px 5px rgba(255,240,230,0.1);
+            position: relative; /* 为右上角按钮定位做准备 */
         }
         header h1 { font-size: 2.2rem; }
+
+        /* 新增：语言切换按钮样式 (保持与主页一致) */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            border: 1px solid rgb(255, 244, 210);
+            color: rgb(255, 244, 210);
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .lang-switch:hover {
+            background-color: rgb(255, 244, 210);
+            color: #7f3516;
+        }
 
         .container {
             max-width: 1100px;
@@ -46,12 +67,20 @@
         .role-list li {
             font-size: 1.2rem;
             margin: 0.5rem 0;
+            line-height: 1.6;
         }
 
         video {
             width: 100%;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* 视频下方的注释列表样式 */
+        .video-note {
+            margin-top: 10px;
+            margin-left: 20px;
+            color: #666;
         }
 
         .back-link {
@@ -62,6 +91,7 @@
             color: white;
             text-decoration: none;
             border-radius: 5px;
+            transition: 0.3s;
         }
         .back-link:hover { background-color: #9a6421; }
 
@@ -72,68 +102,151 @@
             padding: 1rem 0;
             margin-top: 3rem;
         }
+
+        /* 移动端适配 */
+        @media (max-width: 600px) {
+            .lang-switch {
+                position: static;
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+        }
     </style>
 
     <base target="_self">
 </head>
 <body>
     <header>
-        <h1>三日舞会 - DDDance</h1>
-        <p>更多信息</p>
+        <button id="lang-btn" class="lang-switch">EN</button>
+
+        <h1 data-i18n="title">三日舞会 - DDDance</h1>
+        <p data-i18n="subtitle">更多信息</p>
     </header>
 
     <div class="container">
 
-        <!-- 规则信息 -->
         <div class="section">
-            <h2>游戏规则</h2>
-            <p>规则：玩家在舞会上通过三日内发生的事件判断其他角色的身份，最终决定舞池的命运……</p>
-            <p>一场游戏中，玩家将经历三天两夜的舞会。舞场上有包括你在内六位优秀的舞者，还有三位伪装成舞者的伶人，想用悲哀的歌声染指欢宴，现在的你无法知晓其身份。
+            <h2 data-i18n="rules-title">游戏规则</h2>
+            <p data-i18n="rules-short">规则：玩家在舞会上通过三日内发生的事件判断其他角色的身份，最终决定舞池的命运……</p>
+            <br>
+            <p data-i18n="rules-long">一场游戏中，玩家将经历三天两夜的舞会。舞场上有包括你在内六位优秀的舞者，还有三位伪装成舞者的伶人，想用悲哀的歌声染指欢宴，现在的你无法知晓其身份。
 舞会将举办三日，前两日将有一系列固定/随机事件;每日的最后将会有一场特殊的三人舞池，仅能容许和谐的舞蹈(三人中阵营与其他角色不同的角色会立刻离场)
 经历事件，获取信息，在最后一日的舞池中避免真正的舞者出局，即为最终胜利!</p>
         </div>
 
-        <!-- 身份介绍 -->
         <div class="section">
-            <h2>身份介绍</h2>
+            <h2 data-i18n="roles-title">身份介绍</h2>
             <ul class="role-list">
-                <li>舞者：包括你在内的优秀舞者角色。</li>
-                <li>伶人：伪装成舞者潜伏在舞池中，试图用悲伤的歌谣染指欢宴。每晚可使一名舞者角色离开舞场。</li>
-                <li>面具伶人：特殊的伶人（属于伶人阵营）。若在最后一日的舞池开始前仍在舞场，则会为在场随机一位角色带上面具，使其在舞池中的身份发生倒转。</li>
+                <li data-i18n="role-dancer"><strong>舞者</strong>：包括你在内的优秀舞者角色。</li>
+                <li data-i18n="role-actor"><strong>伶人</strong>：伪装成舞者潜伏在舞池中，试图用悲伤的歌谣染指欢宴。每晚可使一名舞者角色离开舞场。</li>
+                <li data-i18n="role-mask"><strong>面具伶人</strong>：特殊的伶人（属于伶人阵营）。若在最后一日的舞池开始前仍在舞场，则会为在场随机一位角色带上面具，使其在舞池中的身份发生倒转。</li>
             </ul>
         </div>
 
-        <!-- 概念视频 -->
         <div class="section">
-            <h2>概念视频</h2>
+            <h2 data-i18n="video-concept-title">概念视频</h2>
             <video controls preload="metadata" width="100%">
                 <source src="https://pub-2655390ac1834974a6d2c36bfea6e0e1.r2.dev/concept.mp4" type="video/mp4">
                 您的浏览器不支持 HTML5 视频播放。
             </video>
-            <ul>
-                <li>视频画面仅为概念展示，实际内容以游戏内画面为准。</li>
+            <ul class="video-note">
+                <li data-i18n="video-concept-note">视频画面仅为概念展示，实际内容以游戏内画面为准。</li>
             </ul>
         </div>
 
         
-        <!-- 演示视频 -->
         <div class="section">
-            <h2>演示视频</h2>
-            <li>该视频使用windows版本进行演示。</li>
+            <h2 data-i18n="video-demo-title">演示视频</h2>
+            <ul class="video-note" style="margin-bottom: 10px;">
+                 <li data-i18n="video-demo-note">该视频使用windows版本进行演示。</li>
+            </ul>
             <video controls preload="metadata" width="100%">
                 <source src="https://pub-2655390ac1834974a6d2c36bfea6e0e1.r2.dev/ingame.mp4" type="video/mp4">
                 您的浏览器不支持 HTML5 视频播放。
             </video>
         </div>
 
-        <a href="index.html" class="back-link">返回首页</a>
+        <a href="index.html" class="back-link" data-i18n="back-btn">返回首页</a>
     </div>
 
     <footer>
-        <p>&copy; 2026 三日舞会. 保留所有权利.</p>
+        <p data-i18n="copyright">&copy; 2026 三日舞会. 保留所有权利.</p>
     </footer>
+
+    <script>
+        // 翻译内容字典
+        const translations = {
+            'zh': {
+                'title': '三日舞会 - DDDance',
+                'subtitle': '更多信息',
+                'rules-title': '游戏规则',
+                'rules-short': '规则：玩家在舞会上通过三日内发生的事件判断其他角色的身份，最终决定舞池的命运……',
+                'rules-long': '一场游戏中，玩家将经历三天两夜的舞会。舞场上有包括你在内六位优秀的舞者，还有三位伪装成舞者的伶人，想用悲哀的歌声染指欢宴，现在的你无法知晓其身份。舞会将举办三日，前两日将有一系列固定/随机事件;每日的最后将会有一场特殊的三人舞池，仅能容许和谐的舞蹈(三人中阵营与其他角色不同的角色会立刻离场)。经历事件，获取信息，在最后一日的舞池中避免真正的舞者出局，即为最终胜利!',
+                'roles-title': '身份介绍',
+                'role-dancer': '<strong>舞者</strong>：包括你在内的优秀舞者角色。',
+                'role-actor': '<strong>伶人</strong>：伪装成舞者潜伏在舞池中，试图用悲伤的歌谣染指欢宴。每晚可使一名舞者角色离开舞场。',
+                'role-mask': '<strong>面具伶人</strong>：特殊的伶人（属于伶人阵营）。若在最后一日的舞池开始前仍在舞场，则会为在场随机一位角色带上面具，使其在舞池中的身份发生倒转。',
+                'video-concept-title': '概念视频',
+                'video-concept-note': '视频画面仅为概念展示，实际内容以游戏内画面为准。',
+                'video-demo-title': '演示视频',
+                'video-demo-note': '该视频使用windows版本进行演示。',
+                'back-btn': '返回首页',
+                'copyright': '&copy; 2026 三日舞会. 保留所有权利.'
+            },
+            'en': {
+                'title': 'DDDance - Three Day Ball',
+                'subtitle': 'More Information',
+                'rules-title': 'Game Rules',
+                'rules-short': 'Rules: Players judge other characters\' identities through events over three days, ultimately deciding the fate of the dance floor...',
+                'rules-long': 'In a game session, players will experience a ball lasting three days and two nights. The dance floor hosts 6 excellent Dancers (including you) and 3 Actors disguised as Dancers, attempting to taint the banquet with sorrowful songs; their identities are currently unknown to you. The ball lasts three days. The first two days feature a series of fixed/random events. At the end of each day, there is a special 3-person dance floor that only allows harmonious dancing (if one character has a different faction from the other two, they leave immediately). Experience events, gather information, and prevent the true Dancers from being eliminated on the final day\'s dance floor to achieve victory!',
+                'roles-title': 'Role Introduction',
+                'role-dancer': '<strong>Dancer</strong>: Excellent dancer characters, including yourself.',
+                'role-actor': '<strong>Actor</strong>: Disguised as dancers lurking in the dance floor, attempting to taint the banquet with sad songs. Each night, they can cause one Dancer to leave the floor.',
+                'role-mask': '<strong>Masked Actor</strong>: A special Actor (belongs to the Actor faction). If they are still present before the final day\'s dance begins, they will place a mask on a random character, inverting that character\'s identity/alignment during the dance.',
+                'video-concept-title': 'Concept Video',
+                'video-concept-note': 'Video footage is for concept demonstration only; actual in-game content may differ.',
+                'video-demo-title': 'Demo Video',
+                'video-demo-note': 'This video demonstrates the Windows version.',
+                'back-btn': 'Back to Home',
+                'copyright': '&copy; 2026 DDDance. All rights reserved.'
+            }
+        };
+
+        // 获取按钮和当前语言状态
+        const langBtn = document.getElementById('lang-btn');
+        let currentLang = 'zh'; // 默认中文
+
+        // 更新页面内容的函数
+        function updateContent(lang) {
+            // 遍历所有带有 data-i18n 属性的元素
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    // 如果内容包含HTML标签（如<strong>或&copy;），使用innerHTML
+                    if (key.startsWith('role-') || key === 'copyright') {
+                        element.innerHTML = translations[lang][key];
+                    } else {
+                        element.innerText = translations[lang][key];
+                    }
+                }
+            });
+            
+            // 更新按钮文字
+            langBtn.innerText = lang === 'zh' ? 'EN' : '中';
+            
+            // 更新 HTML 标签的 lang 属性
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        }
+
+        // 绑定点击事件
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            updateContent(currentLang);
+        });
+    </script>
 </body>
 </html>
+
 
 
 
