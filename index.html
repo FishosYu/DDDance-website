@@ -1,355 +1,152 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<title>俞希明 · Personal Portfolio</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三日舞会</title>
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/fishosyu/DDDance-website@main/images/icon.png" type="image/png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff5e9;
+            color: #333;
+        }
+        header {
+            background-color: #7f3516;
+            color: rgb(255, 244, 210);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(255, 240, 230, 0.1);
+        }
+        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+        .game-info {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                              url('https://cdn.jsdelivr.net/gh/fishosyu/DDDance-website@main/images/image.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(255, 235, 213, 0.443);
+            color: white;
+        }
+        .game-info h2 {
+            color: white; margin-bottom: 1.5rem;
+            font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .game-info p, .game-info li {
+            line-height: 1.8; margin-bottom: 1.5rem;
+            font-size: 1.1rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .game-info ul { margin-left: 2rem; list-style-position: inside; }
 
-<link rel="icon" href="assets/images/favicon.png" type="image/png">
+        .more-btn {
+            display: inline-block;
+            background-color: #D86F5D;
+            color: white;
+            padding: 0.8rem 1.6rem;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .more-btn:hover { background-color: #9a6421; }
 
-<style>
-:root {
-    --bg: #ffffff;
-    --gray: #f4f4f4;
-    --text: #1a1a1a;
-    --subtext: #666;
-    --accent: #111;
-}
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 0.9fr));
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-right: 1rem;
+        }
+        .screenshot {
+            background-color: #ddd;
+            height: 200px;
+            border-radius: 5px;
+            display: flex; align-items: center; justify-content: center;
+            color: #666;
+        }
+        .download-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .download-btn {
+            display: inline-block;
+            background-color: #ffce83;
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+            margin: 0.5rem;
+        }
+        .download-btn:hover { background-color: #9a6421; }
+        .version-info { margin-top: 1.5rem; color: #666; }
 
-/* ---------- Reset ---------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    overflow-x: hidden;
-    position: relative; /* 为了定位语言按钮 */
-}
-
-/* ---------- Language Switcher (新增) ---------- */
-.lang-switch {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    z-index: 100;
-}
-
-.lang-btn {
-    background: transparent;
-    border: 1px solid var(--subtext);
-    color: var(--text);
-    padding: 0.4rem 1rem;
-    border-radius: 99px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 600;
-    font-family: 'Inter', sans-serif;
-    transition: all 0.3s ease;
-}
-
-.lang-btn:hover {
-    background: var(--text);
-    color: #fff;
-    border-color: var(--text);
-}
-
-/* ---------- Animations ---------- */
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ---------- Profile ---------- */
-.profile {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem;
-    animation: fadeUp 1s ease forwards;
-}
-
-.profile-img {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-}
-
-.profile h1 {
-    font-size: 2.6rem;
-    font-weight: 600;
-}
-
-.subtitle {
-    color: var(--subtext);
-    margin-top: 0.4rem;
-}
-
-.intro {
-    max-width: 520px;
-    margin: 1.6rem auto 0;
-    color: var(--subtext);
-}
-
-/* ---------- Section ---------- */
-.section {
-    padding: 5rem 1.5rem;
-    max-width: 1100px;
-    margin: auto;
-}
-
-.section.gray {
-    background: var(--gray);
-    max-width: none;
-}
-
-.section h2 {
-    text-align: center;
-    font-weight: 600;
-    margin-bottom: 3rem;
-    animation: fadeUp 0.8s ease forwards;
-}
-
-/* ---------- Buttons ---------- */
-.btn {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    background: var(--accent);
-    color: #fff;
-    border-radius: 999px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.btn.outline {
-    background: none;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-}
-
-.btn.small {
-    padding: 0.5rem 1.4rem;
-    font-size: 0.9rem;
-}
-
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-
-/* ---------- Cards ---------- */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2.5rem;
-}
-
-.card {
-    background: #fff;
-    padding: 2.4rem 2rem;
-    border-radius: 24px;
-    text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-    transition: all 0.35s ease;
-    animation: fadeUp 0.8s ease forwards;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.12);
-}
-
-.card-icon {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 1.2rem;
-}
-
-.card h3 {
-    margin-bottom: 0.6rem;
-}
-
-.card p {
-    font-size: 0.95rem;
-    color: var(--subtext);
-    margin-bottom: 1.4rem;
-}
-
-/* ---------- Other ---------- */
-.center {
-    text-align: center;
-}
-
-.center-text {
-    text-align: center;
-    color: var(--subtext);
-    margin-bottom: 2rem;
-}
-
-/* ---------- Footer ---------- */
-footer {
-    padding: 2.5rem;
-    text-align: center;
-    color: var(--subtext);
-}
-</style>
+        footer {
+            background-color: #7f3516;
+            color: rgb(255, 244, 210);
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+    <base target="_blank">
 </head>
-
 <body>
+    <header>
+        <h1>三日舞会 - DDDance</h1>
+        <p>单人“狼人杀”假面舞会</p>
+    </header>
 
-    <div class="lang-switch">
-        <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">EN</button>
+    <div class="container">
+        <div class="game-info">
+            <h2>游戏介绍</h2>
+            <p>为期三日的舞会正在进行，经历事件，做出选择，辨认伶人与舞者，让最后一日的舞池完美落幕。</p>
+
+            <p>制作：</p>
+            <ul>
+                <li>策划：哪里来的咸鱼</li>
+                <li>美术：FishOS.</li>
+                <li>程序：鱼游累了会溺水</li>
+                <li>（其实都是我自己来哒！）</li>
+            </ul>
+
+            <a href="more.html" target="_self" class="more-btn">更多信息</a>
+        </div>
+
+        <div class="screenshots">
+            <img src="https://cdn.jsdelivr.net/gh/fishosyu/DDDance-website@main/images/image1.png" class="screenshot">
+            <img src="https://cdn.jsdelivr.net/gh/fishosyu/DDDance-website@main/images/image2.png" class="screenshot">
+            <img src="https://cdn.jsdelivr.net/gh/fishosyu/DDDance-website@main/images/image3.png" class="screenshot">
+        </div>
+
+        <div class="download-section">
+            <h2>下载游戏</h2>
+            <a href="https://github.com/FishosYu/DDDance-website/releases/download/DDDance/DDDance.zip" class="download-btn">Windows 版本</a>
+            <a href="https://github.com/FishosYu/DDDance-website/releases/download/DDDance/DDDance.apk" class="download-btn">Android 版本</a>
+            <div class="version-info">
+                <p>当前版本：v1.0.0 | 更新日期：2025年11月20日</p>
+                <p>文件大小：≤ 90 MB</p>
+            </div>
+        </div>
     </div>
 
-    <section class="profile">
-        <div>
-            <img src="assets/images/me.jpg" class="profile-img" alt="profile">
-
-            <h1 data-key="name">俞希明</h1>
-            <p class="subtitle" data-key="role">Student · Designer · Creator</p>
-
-            <p class="intro" data-key="bio">
-                专注于游戏开发与交互体验设计，
-                致力于将技术应用与视觉表达融合成有温度的作品。
-            </p>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2 data-key="section_resume">简历</h2>
-
-        <div class="button-group">
-            <a href="assets/resumes/resume-cn.pdf" class="btn" data-key="btn_resume_cn">中文简历</a>
-            <a href="resume-en.html" class="btn outline" data-key="btn_resume_en">English Resume</a>
-        </div>
-        <p class="intro" data-key="update_time">
-            最近更新时间：2025.9
-        </p>
-    </section>
-
-    <section class="section gray">
-        <h2 data-key="section_products">作品</h2>
-
-        <div class="card-grid">
-            <div class="card">
-                <img src="assets/images/products/AInterviewer.png" class="card-icon">
-                <h3>AInterviewer</h3>
-                <p data-key="desc_aint">提供AI模拟面试的安卓应用。支持中英双语。</p>
-                <a href="assets/AInterviewer/" class="btn small" data-key="btn_details">查看详情</a>
-            </div>
-
-            <div class="card">
-                <img src="assets/images/products/dddance.png" class="card-icon">
-                <h3 data-key="title_dddance">三日舞会</h3>
-                <p data-key="desc_dddance">个人独立设计制作的游戏作品，使用Unity制作。</p>
-                <a href="https://www.dddance.top/" class="btn small" data-key="btn_visit">前往网站</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2 data-key="section_other">其他</h2>
-
-        <p class="center-text" data-key="desc_other">
-            包含更多实验项目、视觉作品与研究性内容。
-        </p>
-
-        <div class="center">
-            <a href="assets/otherworks/" class="btn" data-key="btn_subsite">进入作品子站</a>
-        </div>
-    </section>
-
     <footer>
-        <p data-key="footer_copy">© 2026 俞希明</p>
+        <p>&copy; 2025 三日舞会. 保留所有权利.</p>
     </footer>
-
-    <script>
-        // 定义中英文对照内容
-        const translations = {
-            'zh': {
-                'name': '俞希明',
-                'role': 'Student · Designer · Creator',
-                'bio': '专注于游戏开发与交互体验设计，致力于将技术应用与视觉表达融合成有温度的作品。',
-                'section_resume': '简历',
-                'btn_resume_cn': '中文简历',
-                'btn_resume_en': 'English Resume',
-                'update_time': '最近更新时间：2025.9',
-                'section_products': '作品',
-                'desc_aint': '提供AI模拟面试的安卓应用。支持中英双语。',
-                'btn_details': '查看详情',
-                'title_dddance': '三日舞会',
-                'desc_dddance': '个人独立设计制作的游戏作品，使用Unity制作。',
-                'btn_visit': '前往网站',
-                'section_other': '其他',
-                'desc_other': '包含更多实验项目、视觉作品与研究性内容。',
-                'btn_subsite': '进入作品子站',
-                'footer_copy': '© 2026 俞希明'
-            },
-            'en': {
-                'name': 'Yu Ximing',
-                'role': 'Student · Designer · Creator',
-                'bio': 'Focusing on game development and interaction design, dedicated to blending technology with visual expression to create warm, meaningful works.',
-                'section_resume': 'Resume',
-                'btn_resume_cn': 'Chinese Resume',
-                'btn_resume_en': 'English Resume',
-                'update_time': 'Last updated: Sept 2025',
-                'section_products': 'Products',
-                'desc_aint': 'An Android app providing AI mock interviews. Supports bilingual (CN/EN).',
-                'btn_details': 'View Details',
-                'title_dddance': 'Three-Day Ball',
-                'desc_dddance': 'Indie game designed and developed by myself using Unity.',
-                'btn_visit': 'Visit Site',
-                'section_other': 'Other Works',
-                'desc_other': 'Includes experimental projects, visual works, and research content.',
-                'btn_subsite': 'Enter Sub-site',
-                'footer_copy': '© 2026 Yu Ximing'
-            }
-        };
-
-        // 当前语言状态，默认中文
-        let currentLang = 'zh';
-
-        function toggleLanguage() {
-            // 切换语言状态
-            currentLang = currentLang === 'zh' ? 'en' : 'zh';
-            
-            // 更新按钮文字
-            document.getElementById('langToggle').innerText = currentLang === 'zh' ? 'EN' : '中';
-
-            // 更新页面所有带 data-key 的元素
-            const elements = document.querySelectorAll('[data-key]');
-            elements.forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[currentLang][key]) {
-                    el.innerText = translations[currentLang][key];
-                }
-            });
-
-            // 更新 HTML 标签的 lang 属性（利于浏览器识别）
-            document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
-        }
-    </script>
-
 </body>
 </html>
+
+
 
 
 
