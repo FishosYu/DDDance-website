@@ -1,9 +1,9 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>三日舞会</title>
+    <title>三日舞会 - DDDance</title>
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/fishosyu/DDDance-website@main/images/icon.png" type="image/png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,6 +11,8 @@
             font-family: 'Arial', sans-serif;
             background-color: #fff5e9;
             color: #333;
+            /* 平滑过渡所有文字变化 */
+            transition: all 0.3s ease;
         }
         header {
             background-color: #7f3516;
@@ -18,9 +20,30 @@
             padding: 2rem 0;
             text-align: center;
             box-shadow: 0 2px 5px rgba(255, 240, 230, 0.1);
+            position: relative; /* 为右上角按钮定位做准备 */
         }
         header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
         header p { font-size: 1.2rem; opacity: 0.9; }
+        
+        /* 新增：语言切换按钮样式 */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            border: 1px solid rgb(255, 244, 210);
+            color: rgb(255, 244, 210);
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .lang-switch:hover {
+            background-color: rgb(255, 244, 210);
+            color: #7f3516;
+        }
+
         .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 
         .game-info {
@@ -69,6 +92,8 @@
             border-radius: 5px;
             display: flex; align-items: center; justify-content: center;
             color: #666;
+            object-fit: cover; /* 确保图片裁剪适应 */
+            width: 100%;
         }
         .download-section {
             background-color: white;
@@ -98,29 +123,40 @@
             padding: 1rem 0;
             margin-top: 3rem;
         }
+
+        /* 移动端适配：防止按钮挡住标题 */
+        @media (max-width: 600px) {
+            .lang-switch {
+                position: static;
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+        }
     </style>
     <base target="_blank">
 </head>
 <body>
     <header>
-        <h1>三日舞会 - DDDance</h1>
-        <p>单人“狼人杀”假面舞会</p>
+        <button id="lang-btn" class="lang-switch">EN</button>
+        
+        <h1 data-i18n="title">三日舞会 - DDDance</h1>
+        <p data-i18n="subtitle">单人“狼人杀”假面舞会</p>
     </header>
 
     <div class="container">
         <div class="game-info">
-            <h2>游戏介绍</h2>
-            <p>为期三日的舞会正在进行，经历事件，做出选择，辨认伶人与舞者，让最后一日的舞池完美落幕。</p>
+            <h2 data-i18n="intro-title">游戏介绍</h2>
+            <p data-i18n="intro-desc">为期三日的舞会正在进行，经历事件，做出选择，辨认伶人与舞者，让最后一日的舞池完美落幕。</p>
 
-            <p>制作：</p>
+            <p data-i18n="credits-label">制作：</p>
             <ul>
-                <li>策划：哪里来的咸鱼</li>
-                <li>美术：FishOS.</li>
-                <li>程序：鱼游累了会溺水</li>
-                <li>（其实都是我自己来哒！）</li>
+                <li><span data-i18n="role-plan">策划</span>：哪里来的咸鱼</li>
+                <li><span data-i18n="role-art">美术</span>：FishOS.</li>
+                <li><span data-i18n="role-dev">程序</span>：鱼游累了会溺水</li>
+                <li data-i18n="role-note">（其实都是我自己来哒！）</li>
             </ul>
 
-            <a href="more.html" target="_self" class="more-btn">更多信息</a>
+            <a href="more.html" target="_self" class="more-btn" data-i18n="more-btn">更多信息</a>
         </div>
 
         <div class="screenshots">
@@ -130,28 +166,95 @@
         </div>
 
         <div class="download-section">
-            <h2>下载游戏</h2>
-            <a href="https://github.com/FishosYu/DDDance-website/releases/download/DDDance/DDDance.zip" class="download-btn">Windows 版本</a>
-            <a href="https://github.com/FishosYu/DDDance-website/releases/download/DDDance/DDDance.apk" class="download-btn">Android 版本</a>
+            <h2 data-i18n="download-title">下载游戏</h2>
+            <a href="https://github.com/FishosYu/DDDance-website/releases/download/DDDance/DDDance.zip" class="download-btn" data-i18n="btn-win">Windows 版本</a>
+            <a href="https://github.com/FishosYu/DDDance-website/releases/download/DDDance/DDDance.apk" class="download-btn" data-i18n="btn-android">Android 版本</a>
             <div class="version-info">
-                <p>当前版本：v1.0.0 | 更新日期：2025年11月20日</p>
-                <p>文件大小：≤ 90 MB</p>
+                <p data-i18n="version-info">当前版本：v1.0.0 | 更新日期：2025年11月20日</p>
+                <p data-i18n="size-info">文件大小：≤ 90 MB</p>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 三日舞会. 保留所有权利.</p>
+        <p data-i18n="copyright">&copy; 2025 三日舞会. 保留所有权利.</p>
     </footer>
+
+    <script>
+        // 翻译内容字典
+        const translations = {
+            'zh': {
+                'title': '三日舞会 - DDDance',
+                'subtitle': '单人“狼人杀”假面舞会',
+                'intro-title': '游戏介绍',
+                'intro-desc': '为期三日的舞会正在进行，经历事件，做出选择，辨认伶人与舞者，让最后一日的舞池完美落幕。',
+                'credits-label': '制作：',
+                'role-plan': '策划',
+                'role-art': '美术',
+                'role-dev': '程序',
+                'role-note': '（其实都是我自己来哒！）',
+                'more-btn': '更多信息',
+                'download-title': '下载游戏',
+                'btn-win': 'Windows 版本',
+                'btn-android': 'Android 版本',
+                'version-info': '当前版本：v1.0.0 | 更新日期：2025年11月20日',
+                'size-info': '文件大小：≤ 90 MB',
+                'copyright': '&copy; 2025 三日舞会. 保留所有权利.'
+            },
+            'en': {
+                'title': 'DDDance - Three Day Ball',
+                'subtitle': 'Single-player "Werewolf" Masquerade',
+                'intro-title': 'Game Intro',
+                'intro-desc': 'The three-day ball is ongoing. Experience events, make choices, distinguish between Actors and Dancers, and bring the final day\'s dance floor to a perfect close.',
+                'credits-label': 'Credits:',
+                'role-plan': 'Planner',
+                'role-art': 'Art',
+                'role-dev': 'Dev',
+                'role-note': '(Actually, I did it all myself!)',
+                'more-btn': 'More Info',
+                'download-title': 'Download Game',
+                'btn-win': 'Windows Version',
+                'btn-android': 'Android Version',
+                'version-info': 'Version: v1.0.0 | Updated: Nov 20, 2025',
+                'size-info': 'File Size: ≤ 90 MB',
+                'copyright': '&copy; 2025 DDDance. All rights reserved.'
+            }
+        };
+
+        // 获取按钮和当前语言状态
+        const langBtn = document.getElementById('lang-btn');
+        let currentLang = 'zh'; // 默认中文
+
+        // 更新页面内容的函数
+        function updateContent(lang) {
+            // 遍历所有带有 data-i18n 属性的元素
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    // 如果是HTML内容（比如包含版权符号），用innerHTML，否则用innerText
+                    if (key === 'copyright') {
+                        element.innerHTML = translations[lang][key];
+                    } else {
+                        element.innerText = translations[lang][key];
+                    }
+                }
+            });
+            
+            // 更新按钮文字，显示“切换到另一种语言”
+            langBtn.innerText = lang === 'zh' ? 'EN' : '中';
+            
+            // 更新 HTML 标签的 lang 属性
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        }
+
+        // 绑定点击事件
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            updateContent(currentLang);
+        });
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
 
 
 
