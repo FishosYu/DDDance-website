@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>制作历程 - 三日舞会</title>
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/fishosyu/DDDance-website@main/images/icon.png" type="image/png">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff5e9;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        header {
+            background-color: #7f3516;
+            color: rgb(255, 244, 210);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(255,240,230,0.1);
+            position: relative;
+        }
+        header h1 { font-size: 2.2rem; }
+        header p { margin-top: 0.4rem; opacity: 0.9; }
+
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            border: 1px solid rgb(255, 244, 210);
+            color: rgb(255, 244, 210);
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .lang-switch:hover {
+            background-color: rgb(255, 244, 210);
+            color: #7f3516;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background-color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #7f3516;
+        }
+
+        .section p {
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+
+        .stage-label {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: #9a6421;
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.04em;
+        }
+
+        .demo-row {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 1.5rem;
+            align-items: start;
+            margin-top: 1.2rem;
+        }
+
+        .demo-download {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .file-card {
+            border: 1px solid #f0d9b8;
+            background: #fffaf2;
+            border-radius: 8px;
+            padding: 1.2rem;
+        }
+
+        .file-card strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #7f3516;
+        }
+
+        .file-card span {
+            display: block;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .download-link {
+            display: inline-block;
+            background-color: #D86F5D;
+            color: white;
+            padding: 0.7rem 1.3rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .download-link:hover { background-color: #9a6421; }
+
+        .demo-shot {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ecd7b8;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            display: block;
+        }
+
+        .shot-caption {
+            margin-top: 0.6rem;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 0.8rem;
+            background: #1a1a1a;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            padding: 0.6rem 1.3rem;
+            background-color: #ffce83;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .back-link:hover { background-color: #9a6421; }
+
+        .back-link.secondary {
+            background-color: #D86F5D;
+        }
+        .back-link.secondary:hover { background-color: #9a6421; }
+
+        footer {
+            background-color: #7f3516;
+            color: rgb(255,244,210);
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 800px) {
+            .demo-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .lang-switch {
+                position: static;
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+
+    <base target="_self">
+</head>
+<body>
+    <header>
+        <button id="lang-btn" class="lang-switch">EN</button>
+        <h1 data-i18n="title">三日舞会 - DDDance</h1>
+        <p data-i18n="subtitle">制作历程</p>
+    </header>
+
+    <div class="container">
+
+        <div class="section">
+            <span class="stage-label" data-i18n="origin-label">初衷</span>
+            <h2 data-i18n="origin-title">为什么做这个游戏</h2>
+            <p data-i18n="origin-p1">最初的想法很简单：我太喜欢狼人杀了，但是狼人杀需要九个人玩；想尝试做一款一个人也能玩的“狼人杀”。</p>
+            <p data-i18n="origin-p2">我希望保留狼人杀里最核心的博弈——获取信息、猜身份、做取舍…… “来个好人搏一搏”；同时仍能留下“和人说话”的感觉，而不是纯数值推演。舞会与假面只是外壳，真正想做的是：在不同风格的氛围里，重写一局可以独自沉浸的狼人杀。</p>
+        </div>
+
+        <div class="section">
+            <span class="stage-label" data-i18n="stage1-label">阶段一</span>
+            <h2 data-i18n="stage1-title">玩法逻辑验证</h2>
+            <p data-i18n="stage1-p1">正式进 Unity 之前，我先用纯文字 Java Demo 把三日流程、身份分配、离场与最终揭示跑通。尽管有不少设定源于狼人杀，但是将技能变为随机事件/流程安排/游戏内各种概率分布，许多玩法上的设计都和原来的聚会游戏有了很大区别。*我把这样一套翻新的玩法做成游戏，真的好玩吗？于是打开Unity前，我先打开了VSCode。* 那时候没有华丽画面，只有终端里简单的文字输出——但规则能不能成立，已经能在这一步初现端倪；在与朋友的多次试玩后，现在的玩法已经和最初的文字Demo有所区别，但基本都是从文字的这个小小Demo开始。</p>
+            <p data-i18n="stage1-p2">下方可以下载当时的源码，旁边是 Demo 运行时的界面截图。</p>
+
+            <div class="demo-row">
+                <div class="demo-download">
+                    <div class="file-card">
+                        <strong data-i18n="java-name">MasqueradeGame.java</strong>
+                        <span data-i18n="java-desc">早期文字版假面舞会逻辑 Demo（控制台运行）</span>
+                        <a class="download-link" href="assets/journey/MasqueradeGame.java" download data-i18n="java-download">下载 Java 文件</a>
+                    </div>
+                </div>
+                <div>
+                    <img class="demo-shot" src="assets/journey/java-demo-screenshot.png" alt="Java text demo screenshot">
+                    <p class="shot-caption" data-i18n="java-shot-caption">文字 Demo 运行界面：身份揭示与游戏结束输出。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <span class="stage-label" data-i18n="stage2-label">阶段二</span>
+            <h2 data-i18n="stage2-title">Coze API × Unity 功能验证</h2>
+            <p data-i18n="stage2-p1">确定规则能跑之后，下一步是验证：能不能在 Unity 里真正“问一句、收到一句像人的答复”，即是否能够在Unity里成功调用AI。一方面是要筛选便捷可用的模型--openAI固然美丽，但昂贵的费用和网络代理的问题更没有性价比；但是离开openAI，大部分模型都没有提供足够的文档或教程表述如何在Unity中恰当地接入。那时 AI coding 远没有今天这么发达，很多对接、调试都得自己一点点抠。</p>
+            <p data-i18n="stage2-p2">最后我选择了Coze（便宜还自带人物模拟Agent）。当第一条从 Unity 发出去的消息，正确收到 AI 回复的那一刻，我非常激动——对话这条路，突然变得真实起来。下面是当时的功能验证录像。</p>
+            <video controls preload="metadata" width="100%">
+                <source src="assets/journey/unityaidemovideo.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+
+        <div class="section">
+            <span class="stage-label" data-i18n="stage3-label">阶段三</span>
+            <h2 data-i18n="stage3-title">正式制作与调试</h2>
+            <p data-i18n="stage3-p1">验证通过之后，才进入真正的制作：场景与角色、三日事件、舞池判定、UI 与流程串联，以及漫长的Debug和调试。但有最初的原型和功能验证，才能在制作过程中少走很多弯路，少经历很多自我怀疑和内耗。</p>
+            <p data-i18n="stage3-p2">而最后的最后，我终于迎来了这样一个游戏：一个我重构玩法、验证功能、自己首个全栈落地实现的，一个我想要的游戏。</p>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html" class="back-link" data-i18n="back-home">返回首页</a>
+            <a href="more.html" class="back-link secondary" data-i18n="to-more">更多信息</a>
+        </div>
+    </div>
+
+    <footer>
+        <p data-i18n="copyright">&copy; 2026 三日舞会. 保留所有权利.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            'zh': {
+                'title': '三日舞会 - DDDance',
+                'subtitle': '制作历程',
+                'origin-label': '初衷',
+                'origin-title': '为什么做这个游戏',
+                'origin-p1': '最初的想法很简单：我太喜欢狼人杀了，但是狼人杀需要九个人玩；想尝试做一款一个人也能玩的“狼人杀”。',
+                'origin-p2': '我希望保留狼人杀里最核心的博弈——获取信息、猜身份、做取舍…… “来个好人搏一搏”；同时仍能留下“和人说话”的感觉，而不是纯数值推演。舞会与假面只是外壳，真正想做的是：在不同风格的氛围里，重写一局可以独自沉浸的狼人杀。',
+                'stage1-label': '阶段一',
+                'stage1-title': '玩法逻辑验证',
+                'stage1-p1': '正式进 Unity 之前，我先用纯文字 Java Demo 把三日流程、身份分配、离场与最终揭示跑通。尽管有不少设定源于狼人杀，但是将技能变为随机事件/流程安排/游戏内各种概率分布，许多玩法上的设计都和原来的聚会游戏有了很大区别。*我把这样一套翻新的玩法做成游戏，真的好玩吗？于是打开Unity前，我先打开了VSCode。* 那时候没有华丽画面，只有终端里简单的文字输出——但规则能不能成立，已经能在这一步初现端倪；在与朋友的多次试玩后，现在的玩法已经和最初的文字Demo有所区别，但基本都是从文字的这个小小Demo开始。',
+                'stage1-p2': '下方可以下载当时的源码，旁边是 Demo 运行时的界面截图。',
+                'java-name': 'MasqueradeGame.java',
+                'java-desc': '早期文字版假面舞会逻辑 Demo（控制台运行）',
+                'java-download': '下载 Java 文件',
+                'java-shot-caption': '文字 Demo 运行界面：身份揭示与游戏结束输出。',
+                'stage2-label': '阶段二',
+                'stage2-title': 'Coze API × Unity 功能验证',
+                'stage2-p1': '确定规则能跑之后，下一步是验证：能不能在 Unity 里真正“问一句、收到一句像人的答复”，即是否能够在Unity里成功调用AI。一方面是要筛选便捷可用的模型--openAI固然美丽，但昂贵的费用和网络代理的问题更没有性价比；但是离开openAI，大部分模型都没有提供足够的文档或教程表述如何在Unity中恰当地接入。那时 AI coding 远没有今天这么发达，很多对接、调试都得自己一点点抠。',
+                'stage2-p2': '最后我选择了Coze（便宜还自带人物模拟Agent）。当第一条从 Unity 发出去的消息，正确收到 AI 回复的那一刻，我非常激动——对话这条路，突然变得真实起来。下面是当时的功能验证录像。',
+                'stage3-label': '阶段三',
+                'stage3-title': '正式制作与调试',
+                'stage3-p1': '验证通过之后，才进入真正的制作：场景与角色、三日事件、舞池判定、UI 与流程串联，以及漫长的Debug和调试。但有最初的原型和功能验证，才能在制作过程中少走很多弯路，少经历很多自我怀疑和内耗。',
+                'stage3-p2': '而最后的最后，我终于迎来了这样一个游戏：一个我重构玩法、验证功能、自己首个全栈落地实现的，一个我想要的游戏。',
+                'back-home': '返回首页',
+                'to-more': '更多信息',
+                'copyright': '&copy; 2026 三日舞会. 保留所有权利.'
+            },
+            'en': {
+                'title': 'DDDance - Three Day Ball',
+                'subtitle': 'Development Journey',
+                'origin-label': 'Origin',
+                'origin-title': 'Why This Game',
+                'origin-p1': 'The idea started simply: I love Werewolf, but it needs nine people. I wanted to try making a “Werewolf” game that one person could play alone.',
+                'origin-p2': 'I hoped to keep the core of Werewolf—gathering information, guessing identities, making hard calls… that “take a risk as the good side” feeling—while still leaving room to “talk to someone,” not just crunch numbers. The masquerade ball is the skin; the real goal was to rebuild, in different atmospheres, a Werewolf session you can sink into by yourself.',
+                'stage1-label': 'Stage 1',
+                'stage1-title': 'Gameplay Logic Validation',
+                'stage1-p1': 'Before Unity, I proved the three-day flow, role assignment, eliminations, and final reveal with a plain-text Java demo. A lot still came from Werewolf, but turning skills into random events, scheduled beats, and in-game probability made the design diverge a lot from the party game. *Would a remade ruleset like this actually be fun as a game? So before opening Unity, I opened VS Code.* No fancy visuals then—just simple terminal text—but that was enough for the rules to start showing whether they could stand. After many playtests with friends, today’s rules differ from that first text demo, but it all began with that tiny little demo.',
+                'stage1-p2': 'You can download the source below; the screenshot next to it shows the demo running.',
+                'java-name': 'MasqueradeGame.java',
+                'java-desc': 'Early text-based masquerade logic demo (console)',
+                'java-download': 'Download Java File',
+                'java-shot-caption': 'Text demo running: identity reveal and end-of-game output.',
+                'stage2-label': 'Stage 2',
+                'stage2-title': 'Coze API × Unity Proof of Concept',
+                'stage2-p1': 'Once the rules worked, the next question was: could Unity really send a line and get a human-like reply back—could I actually call AI from inside Unity? I had to pick a model that was practical: OpenAI is beautiful, but the cost and proxy hassle weren’t worth it; without OpenAI, most models lacked clear docs or tutorials for a proper Unity integration. AI coding tools were nowhere near as strong as they are today, so a lot of the wiring and debugging had to be done by hand.',
+                'stage2-p2': 'In the end I chose Coze—cheap, and it came with character-simulation agents. The moment the first message left Unity and came back with a correct AI answer, I was thrilled—dialogue suddenly felt real. The clip below is that early verification demo.',
+                'stage3-label': 'Stage 3',
+                'stage3-title': 'Production & Debugging',
+                'stage3-p1': 'After the proofs of concept, real production began: scenes and characters, three days of events, dance-floor judgment, UI and flow stitching—plus a long stretch of debugging. Having that first prototype and feature validation meant fewer wrong turns later, and a lot less self-doubt and burnout along the way.',
+                'stage3-p2': 'And at the very end, I finally got the game I wanted: one where I rebuilt the rules, verified the features, and shipped my first full-stack project end to end—a game I truly wanted.',
+                'back-home': 'Back to Home',
+                'to-more': 'More Info',
+                'copyright': '&copy; 2026 DDDance. All rights reserved.'
+            }
+        };
+
+        const langBtn = document.getElementById('lang-btn');
+        let currentLang = 'zh';
+
+        function updateContent(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    if (key === 'copyright') {
+                        element.innerHTML = translations[lang][key];
+                    } else {
+                        element.innerText = translations[lang][key];
+                    }
+                }
+            });
+            langBtn.innerText = lang === 'zh' ? 'EN' : '中';
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        }
+
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            updateContent(currentLang);
+        });
+    </script>
+</body>
+</html>
